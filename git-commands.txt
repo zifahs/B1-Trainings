@@ -1,0 +1,11 @@
+1. git clone <repo-url>            	-- To clone remote repo
+2. git add .			   	-- To add changes locally
+3. git status                      	-- To check status
+4. git commit -m "Any message"     	-- To commit changes locally or adding to staging area
+5. git push 			   	-- To push changes to remote repo
+6. git pull 			   	-- To pull changes locally
+7. git branch 			   	-- To check current working branch 
+8. git branch <new-branch-name>	   	-- To create new branch
+9. git checkout <branch-name>      	-- To switch to other branch
+10. git log 			   	-- To check logs
+11. git checkout -b <new-branch>   	-- To create and switch to new branch

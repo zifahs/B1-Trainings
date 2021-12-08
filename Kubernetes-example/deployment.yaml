@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Ect-Webserver
+  labels:
+    name: Ect-webserver
+    app: Ect-webserver
+spec:
+  selector:
+    matchLabels:
+      app: Ect-webserver
+  strategy:
+    type: RollingUpdate
+  replicas: 3
+  template:
+    metadata:
+      name: Ect-webserver
+      labels:
+        name: Ect-webserver
+        app: Ect-webserver
+    spec:
+      containers:
+        - name: Ect-webserver
+          image: nginx
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP

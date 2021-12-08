@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: ect-webserver
+  labels:
+    app: myapp
+    version: app-1.0
+spec:
+  repplicas: 3
+  selector:
+    matchLabels:
+        app: myapp
+        version: 1.0
+  template:
+    metadata:
+       labels:
+         app: myapp
+spec:
+  containers:
+  - name: nginx-container
+    image: Ect-nginx: 1.0
+    command: ["ping"]
+    args: ["yahoo.com"]
+    envFrom:
+      - secretRef:
+            name: myapp-secret 
+    securityContext:
+        runAsUser: 1000
+        capabilities: 
+            add: ["admin"]
+    resources:
+       requests:
+          memory: "1Gi"   #default is 256 Mi
+          cpu: 1          #default is 0.5 
+       limits:
+          memory: "2Gi"
+          cpu: 2
+    livenessProbe:
+        httpGet: /index.php
+        port: 80
+
+
+
+
+

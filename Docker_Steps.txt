@@ -1,0 +1,79 @@
+1. Look for official docker image on hub.docker.com
+2. If you want to a build custom Image, then create a Dockerfile. below is the format of    Dockerfile
+
+##### Dockerfile #####  
+
+          FROM node:8.11.4-alpine
+          ENV LOG_DIR /var/log/ls
+
+          #Create app directory
+          RUN mkdir -p /usr/src/app  ${LOG_DIR} \
+            && apk update \
+            && apk add python make g++
+
+          # Set the work directory to 
+          WORKDIR /usr/src/app
+
+          # add `/usr/src/app/node_modules/.bin` to $PATH
+          ENV PATH /usr/src/app/node_modules/.bin:$PATH
+
+          #Copy app package.json to docker demon
+          COPY package.json  /usr/src/app/package.json
+
+          #Install app dependencies
+          RUN npm install
+
+          #Expose the application on the port 8080
+          EXPOSE 8080
+
+          # Copy the source code of app to docker demon
+          COPY . /usr/src/app
+
+          #Run the node command
+          CMD ["node", "app.js"]
+
+
+3. Now build the image using below command
+  # docker build -t <name-of-image>:<tag-name>
+    
+  Description - the above command creates a docker image with whatever name and tag you have specified. If no tag name is provided    then it will consider it as latest
+
+4. Once the docker image is built, execute below commands to deploy container out of it.
+  # docker run -p <host-port>:<container-port> <docker-image-name>
+  # docker run -p <host-port>:<container-port> -d <docker-image-name> -- To run container in detached mode
+  # docker ps -- To list running containers
+  # docker ps -a  -- To list all containers including exited(stopped)
+  # docker exec -it <container-name or id> /bin/bash -- To get into container, and other option for command propmt is /bin/sh
+  # docker stop <conatiner-name or id>  -- To stop existing container
+  # docker start <container-name or id> -- To start a stopped container
+  # docker rm <container-name or id> -- To remove the container, but it only works after stopping the container
+  # docker volume create <volume-name>  -- To create docker volume
+  # docker volume ls -- To list docker volumes
+  # docker run -v <volume-name>:<mount point or path in container> <image-name>  -- To mount volume toa container
+  # docker images -- To list docker images
+  # docker pull <image-name> -- To pull docker image from public repo(hub.docker.com)
+  # docker pull <private-registry-url> -- To pull images from private repos like ECR(aws) and GCR(gcp).
+  # docker tag <current-imagename> <desired-imagename>  -- To tag as per pvt repo()
+  # docker push <private-repo-path/Image-name> -- To push image to pvt-repo
+  # docker rmi <image-id or name>  -- To delete docker images
+  # docker rmi -f <image-id or name> -- To delete docker image forcefully
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                

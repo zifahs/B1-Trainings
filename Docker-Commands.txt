@@ -1,0 +1,40 @@
+##### Docker Commands #####
+
+docker pull <image-name>                                        ---  Pulls the latest image from docker hub
+docker pull <image-name>:<tag>                                  ---  Pulls the specified docker image
+docker images                                                   ---  To list docker images
+docker run -p <host-port>:<container-port> <docker-Image>       ---  To run docker container
+docker run -d -p <host-port>:<container-port>                   ---  To run container in deatched(background) mode
+docker run -d -p <host-port>:<container-port>  
+docker exec -it <container-id>                                  ---  To get into(login) container
+docker ps                                                       ---  To list running containers
+docker ps -a                                                    ---  To list all containers including hidden
+docker stop <container-id/name>                                 ---  To stop any container using id container-id or name            
+docker start <container-id/name>                                ---  To start any container using id container-id or name
+docker build <path-to-Dockerfile>                               ---  To build docker image
+docker build -t <desired-image-name> <path-to-Dockerfile>       ---  To build docker image with desired name
+docker build <path-to-Dockerfile>:<tag>                         ---  To build docker image with desired name and tag
+docker volume ls                                                ---  To list docker volumes
+docker volume create <volume-name>                              ---  To create docker volume 
+docker run -d -v <volume-name>:<mount-point-of-container>       ---  To attach volume
+docker volume rm <volume-name>                                  ---  To remove or delete volume
+
+
+
+
+
+##############  Sample Dockerfile ##############
+
+FROM ubuntu:16.04
+RUN apt-get update -y
+RUN apt-get install apache2 -y
+RUN service apache2 start
+RUN apt-get install iputils-ping -y
+EXPOSE 80
+WORKDIR /var
+CMD ping google.com
+
+##############  Sample Dockerfile ##############
+
+
+

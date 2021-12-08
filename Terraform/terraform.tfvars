@@ -1,0 +1,9 @@
+region          = "us-east-1"
+access_key      = "XXXXX"        # Replace with your access key
+secret_key      = "YYYYY"        # Replace with your secret key
+vpc_cidr        = "40.0.0.0/16"
+vpc_name        = "tfvars-vpc"
+subnet_cidr     = "40.0.1.0/24"
+ami             = "ami-04ad2567c9e3d7893"
+instance_type   = "t2.micro"
+instance_name   = "Build-server"
